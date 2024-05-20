@@ -9,7 +9,7 @@
 // - un metodo che stampi a schermo lo stato della simulazione (cioè il valore
 // di x e y)
 // cambiare nomi variabili e mettere _parametro
-// perchè simulazione va a puttane?
+// perchè simulazione va a p?
 // deve chiedere di inserire dei dati A B C .. e xy iniziali
 //
 
