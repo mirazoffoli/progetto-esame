@@ -29,7 +29,8 @@ class Simulation {
              double B_parametro, double C_parametro, double D_parametro,
              double dt_parametro) {
     if (x_parametro <= 0 || y_parametro <= 0 || A_parametro <= 0 ||
-        B_parametro <= 0 || C_parametro <= 0 || D_parametro <= 0) {
+        B_parametro <= 0 || C_parametro <= 0 || D_parametro <= 0 ||
+        dt_parametro <= 0) {
       std::cout << "Errore, valori non validi \n";
       exit(1);  // Esce dal programma se i valori non sono validi
     }
@@ -46,15 +47,43 @@ class Simulation {
   }
 
   void evolve() {
+    // double x = x + ((A - B * y) * x) * dt;
+    // double y = y + ((C * x - D) * y) * dt;
+
+    // Calcola i nuovi valori di x e y e li assegna agli attributi della classe
     double new_x = x + ((A - B * y) * x) * dt;
     double new_y = y + ((C * x - D) * y) * dt;
-  };
+    x = new_x;
+    y = new_y;
+
+    // Verifica per evitare overflow
+    // la funzione std::isinf() della libreria <cmath>
+    // per controllare se new_x o new_y sono infiniti.
+    // std::isinf() restituisce true se il valore passato è infinito (inf o
+    // -inf).
+    if (std::isinf(new_x) || std::isinf(new_y)) {
+      std::cerr << "Errore: overflow durante la simulazione.\n";
+      exit(1);  // Esce dal programma in caso di overflow
+    }
+
+    // Verifica per evitare valori negativi
+    if (new_x < 0) new_x = 0;
+    if (new_y < 0) new_y = 0;
+
+    x = new_x;
+    y = new_y;
+
+    // Stampa di debug per vedere i valori aggiornati dopo ogni evoluzione
+    std::cout << "Dopo evolve: x = " << x << ", y = " << y << "\n";
+  }
+
   void print() {
     std::cout << "Stato della simulazione:\n";
     std::cout << "Prede (x) = " << x << "\n";
     std::cout << "Predatori (y) = " << y << "\n";
   };
 };
+
 int main() {
   double x_iniziale, y_iniziale, A, B, C, D, dt;
 
