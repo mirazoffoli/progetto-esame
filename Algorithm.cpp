@@ -18,22 +18,23 @@
 
 class Simulation {
  private:
-  double x, y;        // popolazione prede e predatori
+  long x, y;          // popolazione prede e predatori
   double A, B, C, D;  // parametri eq Lotka-Volterra
-  double dt;
+  long t;
 
  public:
-  // Simulation: metodo (cioè funzione dentro a una classe) per dare dei valori
-  // agli attributi (cioè alle variabili) della classe (qui, x, y, A, B, C)
-  Simulation(double x_parametro, double y_parametro, double A_parametro,
-             double B_parametro, double C_parametro, double D_parametro,
-             double dt_parametro) {
+  Simulation(long x_parametro, long y_parametro, double A_parametro,
+             double B_parametro, double C_parametro, double D_parametro) {
+    // Simulation: metodo (cioè funzione dentro a una classe) per dare dei
+    // valori
+    // agli attributi (cioè alle variabili) della classe (qui, x, y, A, B, C)
+
     if (x_parametro <= 0 || y_parametro <= 0 || A_parametro <= 0 ||
-        B_parametro <= 0 || C_parametro <= 0 || D_parametro <= 0 ||
-        dt_parametro <= 0) {
+        B_parametro <= 0 || C_parametro <= 0 || D_parametro <= 0) {
       std::cout << "Errore, valori non validi \n";
       exit(1);  // Esce dal programma se i valori non sono validi
     }
+
     // this è una parola chiave del linguaggio C++ che, usando la sintassi this
     // -> attributo = valore, ti consente di dare dei valori agli
     // attributi=variabili di una classe
@@ -43,44 +44,40 @@ class Simulation {
     this->B = B_parametro;
     this->C = C_parametro;
     this->D = D_parametro;
-    this->dt = dt_parametro;
+    this->t = 0;
   }
 
   void evolve() {
-    // double x = x + ((A - B * y) * x) * dt;
-    // double y = y + ((C * x - D) * y) * dt;
-
     // Calcola i nuovi valori di x e y e li assegna agli attributi della classe
-    double new_x = x + ((A - B * y) * x) * dt;
-    double new_y = y + ((C * x - D) * y) * dt;
-    x = new_x;
-    y = new_y;
 
-    // Verifica per evitare overflow
-    // la funzione std::isinf() della libreria <cmath>
-    // per controllare se new_x o new_y sono infiniti.
-    // std::isinf() restituisce true se il valore passato è infinito (inf o
-    // -inf).
-    if (std::isinf(new_x) || std::isinf(new_y)) {
+    print();
+    // x prede
+    // A: quanto le prede si riproducono (senza predatori, le prede aumentano di
+    // Ax a iterazione) B: tasso mortalità prede (che probabilità ha ogni
+    // predatore di ammazzare una preda) C: quanto i predatori si riproducono D:
+    // tasso mortalità predatori
+
+    // Print all simulation parameters for debugging purposes
+    std::cout << "A = " << A << ", B = " << B << ", C = " << C << ", D = " << D
+              << "\n";
+    x += round((A - B * y) * x);
+    y += round((C * x - D) * y);
+    t++;
+
+    // Se overflow, esco e segnalo errore
+    if (std::isinf(x) || std::isinf(y)) {
       std::cerr << "Errore: overflow durante la simulazione.\n";
-      exit(1);  // Esce dal programma in caso di overflow
+      exit(1);
     }
 
-    // Verifica per evitare valori negativi
-    if (new_x < 0) new_x = 0;
-    if (new_y < 0) new_y = 0;
-
-    x = new_x;
-    y = new_y;
-
-    // Stampa di debug per vedere i valori aggiornati dopo ogni evoluzione
     std::cout << "Dopo evolve: x = " << x << ", y = " << y << "\n";
   }
 
   void print() {
-    std::cout << "Stato della simulazione:\n";
-    std::cout << "Prede (x) = " << x << "\n";
-    std::cout << "Predatori (y) = " << y << "\n";
+    std::cout << "x(" << t << ") = " << x << std::endl;
+    std::cout << "y(" << t << ") = " << y << std::endl;
+    // Stampa a schermo l'integrale primitivo H(x, y)
+    std::cout << "H(" << x << ", " << y << ") = "  << std::endl;
   };
 };
 
@@ -88,29 +85,27 @@ int main() {
   double x_iniziale, y_iniziale, A, B, C, D, dt;
 
   // Richiesta di inserimento dei dati iniziali all'utente
-  std::cout << "Inserisci il numero iniziale di prede (x): ";
-  std::cin >> x_iniziale;
-  std::cout << "Inserisci il numero iniziale di predatori (y): ";
-  std::cin >> y_iniziale;
-  std::cout << "Inserisci il valore del parametro A: ";
-  std::cin >> A;
-  std::cout << "Inserisci il valore del parametro B: ";
-  std::cin >> B;
-  std::cout << "Inserisci il valore del parametro C: ";
-  std::cin >> C;
-  std::cout << "Inserisci il valore del parametro D: ";
-  std::cin >> D;
-  std::cout << "Inserisci il passo temporale (dt): ";
-  std::cin >> dt;
+  // std::cout << "Inserisci il numero iniziale di prede (x): ";
+  // std::cin >> x_iniziale;
+  // std::cout << "Inserisci il numero iniziale di predatori (y): ";
+  // std::cin >> y_iniziale;
+  // std::cout << "Inserisci il valore del parametro A: ";
+  // std::cin >> A;
+  // std::cout << "Inserisci il valore del parametro B: ";
+  // std::cin >> B;
+  // std::cout << "Inserisci il valore del parametro C: ";
+  // std::cin >> C;
+  // std::cout << "Inserisci il valore del parametro D: ";
+  // // std::cin >> D;
 
-  // Creazione dell'istanza della simulazione con i valori forniti dall'utente
-  Simulation sim(x_iniziale, y_iniziale, A, B, C, D, dt);
-
-  // Creazione di un'istanza della simulazione con valori iniziali validi
-  // Simulation sim(10.0, 5.0, 1.1, 0.4, 0.1, 0.4, 20);
+  // // Creazione dell'istanza della simulazione con i valori forniti
+  // dall'utente Simulation sim(x_iniziale, y_iniziale, A, B, C, D);
+  Simulation sim(1000, 1000, 0.02, 0.001, 0.0015, 0.0003);
 
   // Esegue la simulazione per un certo numero di passi
-  int steps = 100;
+  int steps;
+  std::cout << "Quanti passi vuoi simulare? ";
+  std::cin >> steps;
   for (int i = 0; i < steps; ++i) {
     sim.evolve();
   }
