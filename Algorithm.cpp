@@ -11,17 +11,18 @@
 // cambiare nomi variabili e mettere _parametro
 // perchè simulazione va a p?
 // deve chiedere di inserire dei dati A B C .. e xy iniziali
-//
+// dovrei mettere double al posto di long?
 
 #include <cmath>
-#include <iostream>
 #include <fstream>
-
+#include <iostream>
 
 class Simulation {
  private:
-  long x, y;          // popolazione prede e predatori
-  double A, B, C, D;  // parametri eq Lotka-Volterra
+  long x, y;                      // popolazione prede e predatori
+  double x_relative, y_relative;  // valori relativi delle popolazioni
+  double A, B, C, D;              // parametri eq Lotka-Volterra
+  // vanno aggiusti i valri di equilibrio double x_eq, y_eq;
   long t;
 
  public:
@@ -37,9 +38,15 @@ class Simulation {
       exit(1);  // Esce dal programma se i valori non sono validi
     }
 
+    // Calcola i valori di equilibrio
+    // this->x_eq = D / C;
+    // this->y_eq = A / B;
+
     // this è una parola chiave del linguaggio C++ che, usando la sintassi this
     // -> attributo = valore, ti consente di dare dei valori agli
     // attributi=variabili di una classe
+    // this->x = x_parametro / x_eq;
+    // this->y = y_parametro / y_eq;
     this->x = x_parametro;
     this->y = y_parametro;
     this->A = A_parametro;
@@ -66,6 +73,16 @@ class Simulation {
     y += round((C * x - D) * y);
     t++;
 
+    // Assicurati che x e y non diventino zero
+    if (x <= 0 || y <= 0) {
+      std::cerr << "Errore: i valori di x e y non possono diventare zero.\n";
+      exit(1);
+    }
+
+    // Calcolo del valore di H(x, y)
+    double H = -D * log(x) + C * x + B * y - A * log(y);
+    std::cout << "H(" << x << ", " << y << ") = " << H << std::endl;
+
     // Se overflow, esco e segnalo errore
     if (std::isinf(x) || std::isinf(y)) {
       std::cerr << "Errore: overflow durante la simulazione.\n";
@@ -79,22 +96,21 @@ class Simulation {
     std::cout << "x(" << t << ") = " << x << std::endl;
     std::cout << "y(" << t << ") = " << y << std::endl;
     // Stampa a schermo l'integrale primitivo H(x, y)
-    std::cout << "H(" << x << ", " << y << ") = "  << std::endl;
+    std::cout << "H(" << x << ", " << y << ") = " << std::endl;
   };
-
-    // Metodo save_to_file per salvare i dati della simulazione in un file
   void save_to_file(const std::string& filename) {
-    // Crea un oggetto std::ofstream e prova ad aprire il file con il nome fornito
-    std::ofstream file(filename);
-
-    // Controlla se il file è stato aperto correttamente
-    if (!file.is_open()) {  // Se file.is_open() restituisce false, !file.is_open() sarà true
-        // Stampa un messaggio di errore e esce dalla funzione se il file non è stato aperto
-        std::cerr << "Errore nell'apertura del file\n";
-        return;
+    std::ofstream file(filename,
+                       std::ios::app);  // Apri il file in modalità append
+    if (!file.is_open()) {
+      std::cerr << "Errore nell'apertura del file\n";
+      return;
     }
-};};
-
+    file << "x(" << t << ") = " << x << "\n";
+    file << "y(" << t << ") = " << y << "\n";
+    file << "H(" << x << ", " << y << ") = \n";
+    file.close();
+  };
+};
 int main() {
   double x_iniziale, y_iniziale, A, B, C, D, dt;
 
@@ -122,6 +138,7 @@ int main() {
   std::cin >> steps;
   for (int i = 0; i < steps; ++i) {
     sim.evolve();
+    sim.save_to_file("simulation_output.txt");
   }
 
   // Stampa lo stato finale della simulazione
@@ -129,4 +146,4 @@ int main() {
   sim.print();
 
   return 0;
-}
+};
