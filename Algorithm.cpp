@@ -15,6 +15,8 @@
 
 #include <cmath>
 #include <iostream>
+#include <fstream>
+
 
 class Simulation {
  private:
@@ -79,24 +81,36 @@ class Simulation {
     // Stampa a schermo l'integrale primitivo H(x, y)
     std::cout << "H(" << x << ", " << y << ") = "  << std::endl;
   };
-};
+
+    // Metodo save_to_file per salvare i dati della simulazione in un file
+  void save_to_file(const std::string& filename) {
+    // Crea un oggetto std::ofstream e prova ad aprire il file con il nome fornito
+    std::ofstream file(filename);
+
+    // Controlla se il file è stato aperto correttamente
+    if (!file.is_open()) {  // Se file.is_open() restituisce false, !file.is_open() sarà true
+        // Stampa un messaggio di errore e esce dalla funzione se il file non è stato aperto
+        std::cerr << "Errore nell'apertura del file\n";
+        return;
+    }
+};};
 
 int main() {
   double x_iniziale, y_iniziale, A, B, C, D, dt;
 
   // Richiesta di inserimento dei dati iniziali all'utente
-  // std::cout << "Inserisci il numero iniziale di prede (x): ";
-  // std::cin >> x_iniziale;
-  // std::cout << "Inserisci il numero iniziale di predatori (y): ";
-  // std::cin >> y_iniziale;
-  // std::cout << "Inserisci il valore del parametro A: ";
-  // std::cin >> A;
-  // std::cout << "Inserisci il valore del parametro B: ";
-  // std::cin >> B;
-  // std::cout << "Inserisci il valore del parametro C: ";
-  // std::cin >> C;
-  // std::cout << "Inserisci il valore del parametro D: ";
-  // // std::cin >> D;
+  std::cout << "Inserisci il numero iniziale di prede (x): ";
+  std::cin >> x_iniziale;
+  std::cout << "Inserisci il numero iniziale di predatori (y): ";
+  std::cin >> y_iniziale;
+  std::cout << "Inserisci il valore del parametro A: ";
+  std::cin >> A;
+  std::cout << "Inserisci il valore del parametro B: ";
+  std::cin >> B;
+  std::cout << "Inserisci il valore del parametro C: ";
+  std::cin >> C;
+  std::cout << "Inserisci il valore del parametro D: ";
+  std::cin >> D;
 
   // // Creazione dell'istanza della simulazione con i valori forniti
   // dall'utente Simulation sim(x_iniziale, y_iniziale, A, B, C, D);
