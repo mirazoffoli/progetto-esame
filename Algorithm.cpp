@@ -54,6 +54,11 @@ class Simulation {
     this->C = C_parametro;
     this->D = D_parametro;
     this->t = 0;
+    // Calcola i valori relativi rispetto ai valori di equilibrio
+    double x_eq = D / C;
+    double y_eq = A / B;
+    x_relative = x / x_eq;
+    y_relative = y / y_eq;
   }
 
   void evolve() {
@@ -67,11 +72,16 @@ class Simulation {
     // tasso mortalità predatori
 
     // Print all simulation parameters for debugging purposes
-    std::cout << "A = " << A << ", B = " << B << ", C = " << C << ", D = " << D
-              << "\n";
-    x += round((A - B * y) * x);
-    y += round((C * x - D) * y);
-    t++;
+    // std::cout << "A = " << A << ", B = " << B << ", C = " << C << ", D = " <<
+    // D
+    //        << "\n";
+    // x += round((A - B * y) * x);
+    // y += round((C * x - D) * y);
+    // t++;
+
+    // Calcola i nuovi valori relativi di x e y
+    x_relative += t * (A - B * y_relative) * x_relative;
+    y_relative += t * (C * x_relative - D) * y_relative;
 
     // Assicurati che x e y non diventino zero
     if (x <= 0 || y <= 0) {
@@ -93,8 +103,10 @@ class Simulation {
   }
 
   void print() {
-    std::cout << "x(" << t << ") = " << x << std::endl;
-    std::cout << "y(" << t << ") = " << y << std::endl;
+    std::cout << "x(" << t << ") = " << x << ", x_rel = " << x_relative
+              << std::endl;
+    std::cout << "y(" << t << ") = " << y << ", y_rel = " << y_relative
+              << std::endl;
     // Stampa a schermo l'integrale primitivo H(x, y)
     std::cout << "H(" << x << ", " << y << ") = " << std::endl;
   };
@@ -105,8 +117,8 @@ class Simulation {
       std::cerr << "Errore nell'apertura del file\n";
       return;
     }
-    file << "x(" << t << ") = " << x << "\n";
-    file << "y(" << t << ") = " << y << "\n";
+    file << "x(" << t << ") = " << x << ", x_rel = " << x_relative << "\n";
+    file << "y(" << t << ") = " << y << ", y_rel = " << y_relative << "\n";
     file << "H(" << x << ", " << y << ") = \n";
     file.close();
   };
