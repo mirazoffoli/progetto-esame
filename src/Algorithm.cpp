@@ -1,18 +1,3 @@
-
-// Scrivi una classe Simulation
-// Con i metodi:
-// - metodo costruttore che prende in input i valori iniziali di x e di y e A,
-// B, C e D, controllando che questi ultimi siano validi e lanciando un errore
-// in c.
-// - metodo evolve() che manda avanti di t=1 la simulazione in base alle
-// equazioni nella traccia
-// - un metodo che stampi a schermo lo stato della simulazione (cioè il valore
-// di x e y)
-// cambiare nomi variabili e mettere _parametro
-// perchè simulazione va a p?
-// deve chiedere di inserire dei dati A B C .. e xy iniziali
-// dovrei mettere double al posto di long?
-
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -108,8 +93,9 @@ class Simulation {
     std::cout << "y(" << t << ") = " << y << ", y_rel = " << y_relative
               << std::endl;
     // Stampa a schermo l'integrale primitivo H(x, y)
-    std::cout << "H(" << x << ", " << y << ") = " << std::endl;
+    std::cout << "H(" << x << ", " << y << ") = " << std::endl << std::endl;
   };
+
   void save_to_file(const std::string& filename) {
     std::ofstream file(filename,
                        std::ios::app);  // Apri il file in modalità append
@@ -123,28 +109,41 @@ class Simulation {
     file.close();
   };
 };
-int main() {
+
+int main(int argc, char* argv[]) {
   double x_iniziale, y_iniziale, A, B, C, D, dt;
 
-  // Richiesta di inserimento dei dati iniziali all'utente
-  std::cout << "Inserisci il numero iniziale di prede (x): ";
-  std::cin >> x_iniziale;
-  std::cout << "Inserisci il numero iniziale di predatori (y): ";
-  std::cin >> y_iniziale;
-  std::cout << "Inserisci il valore del parametro A: ";
-  std::cin >> A;
-  std::cout << "Inserisci il valore del parametro B: ";
-  std::cin >> B;
-  std::cout << "Inserisci il valore del parametro C: ";
-  std::cin >> C;
-  std::cout << "Inserisci il valore del parametro D: ";
-  std::cin >> D;
+  if (argc != 7 && argc != 1) {
+    std::cerr << "Inserire 0 o 6 parametri da riga di comando" << std::endl;
+    return 1;
+  }
+  if (argc == 7) {
+    x_iniziale = std::stod(argv[1]);
+    y_iniziale = std::stod(argv[2]);
+    A = std::stod(argv[3]);
+    B = std::stod(argv[4]);
+    C = std::stod(argv[5]);
+    D = std::stod(argv[6]);
+  }
 
-  // // Creazione dell'istanza della simulazione con i valori forniti
-  // dall'utente Simulation sim(x_iniziale, y_iniziale, A, B, C, D);
-  Simulation sim(1000, 1000, 0.02, 0.001, 0.0015, 0.0003);
+  else if (argc == 1) {
+    std::cout << "Inserisci il numero iniziale di prede (x): ";
+    std::cin >> x_iniziale;
+    std::cout << "Inserisci il numero iniziale di predatori (y): ";
+    std::cin >> y_iniziale;
+    std::cout << "Inserisci il valore del parametro A: ";
+    std::cin >> A;
+    std::cout << "Inserisci il valore del parametro B: ";
+    std::cin >> B;
+    std::cout << "Inserisci il valore del parametro C: ";
+    std::cin >> C;
+    std::cout << "Inserisci il valore del parametro D: ";
+    std::cin >> D;
+  }
 
-  // Esegue la simulazione per un certo numero di passi
+  Simulation sim(x_iniziale, y_iniziale, A, B, C, D);
+
+  // Eseguo la simulazione
   int steps;
   std::cout << "Quanti passi vuoi simulare? ";
   std::cin >> steps;
