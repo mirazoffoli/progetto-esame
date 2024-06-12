@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(MyProject)
 
 # Set the source files explicitly from the src directory
@@ -8,9 +8,9 @@ file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.h")
 set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build")
 
 # Add the executable target
-add_executable(MyExecutable ${SOURCES})
+add_executable(main ${SOURCES})
 
 # Set the output directory for the executable
-set_target_properties(MyExecutable PROPERTIES
+set_target_properties(main PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${BUILD_DIR}
 )
