@@ -1,0 +1,3 @@
+/home/luca/mira/progetto-esame/build/CMakeFiles/main.dir
+/home/luca/mira/progetto-esame/build/CMakeFiles/edit_cache.dir
+/home/luca/mira/progetto-esame/build/CMakeFiles/rebuild_cache.dir
