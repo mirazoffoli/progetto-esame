@@ -4,14 +4,16 @@
 
 class Simulation {
  private:
-  long x, y;                      // popolazione prede e predatori
+  double x, y;                    // popolazione prede e predatori
   double x_relative, y_relative;  // valori relativi delle popolazioni
   double A, B, C, D;              // parametri eq Lotka-Volterra
-  // vanno aggiusti i valri di equilibrio double x_eq, y_eq;
-  long t;
+  double x_eq, y_eq;  // valori di equilibrio (dovrebbero stabilizzarsi ad 1 se
+                      // il sistema è in equilibrio)
+  double H;           // Valore di H(x, y)
+  double t;
 
  public:
-  Simulation(long x_parametro, long y_parametro, double A_parametro,
+  Simulation(double x_parametro, double y_parametro, double A_parametro,
              double B_parametro, double C_parametro, double D_parametro) {
     // Simulation: metodo (cioè funzione dentro a una classe) per dare dei
     // valori
@@ -22,64 +24,82 @@ class Simulation {
       std::cout << "Errore, valori non validi \n";
       exit(1);  // Esce dal programma se i valori non sono validi
     }
-
-    // Calcola i valori di equilibrio
-    // this->x_eq = D / C;
-    // this->y_eq = A / B;
-
     // this è una parola chiave del linguaggio C++ che, usando la sintassi this
     // -> attributo = valore, ti consente di dare dei valori agli
     // attributi=variabili di una classe
-    // this->x = x_parametro / x_eq;
-    // this->y = y_parametro / y_eq;
+
     this->x = x_parametro;
     this->y = y_parametro;
     this->A = A_parametro;
     this->B = B_parametro;
     this->C = C_parametro;
     this->D = D_parametro;
-    this->t = 0;
-    // Calcola i valori relativi rispetto ai valori di equilibrio
-    double x_eq = D / C;
-    double y_eq = A / B;
+
+    // Calcola i valori di equilibrio
+    this->x_eq = D / C;
+    this->y_eq = A / B;
+
     x_relative = x / x_eq;
     y_relative = y / y_eq;
+
+    t = 0.0;
   }
+
+  // Public member function to access x_relative
+  double getXRelative() const { return x_relative; }
+
+  // Public member function to access y_relative
+  double getYRelative() const { return y_relative; }
+
+  // Public member function to access H
+  double getH() const { return H; }
 
   void evolve() {
     // Calcola i nuovi valori di x e y e li assegna agli attributi della classe
 
-    print();
     // x prede
     // A: quanto le prede si riproducono (senza predatori, le prede aumentano di
     // Ax a iterazione) B: tasso mortalità prede (che probabilità ha ogni
     // predatore di ammazzare una preda) C: quanto i predatori si riproducono D:
     // tasso mortalità predatori
 
-    // Print all simulation parameters for debugging purposes
-    // std::cout << "A = " << A << ", B = " << B << ", C = " << C << ", D = " <<
-    // D
-    //        << "\n";
-    // x += round((A - B * y) * x);
-    // y += round((C * x - D) * y);
-    // t++;
+    // Calcola i nuovi valori di x e y
+    double dt = 0.001;  // Piccolo passo temporale
+    double old_x = x;
+    double old_y = y;
 
-    // Calcola i nuovi valori relativi di x e y
-    x_relative += t * (A - B * y_relative) * x_relative;
-    y_relative += t * (C * x_relative - D) * y_relative;
+    double new_x = old_x + (A * old_x - B * old_x * old_y) * dt;
+    double new_y = old_y + (C * old_x * old_y - D * old_y) * dt;
 
-    // Assicurati che x e y non diventino zero
-    if (x <= 0 || y <= 0) {
-      std::cerr << "Errore: i valori di x e y non possono diventare zero.\n";
+    // Assicurati che x e y non diventino zero o negativi
+    if (new_x <= 0 || new_y <= 0) {
+      std::cerr << "Errore: i valori di x e y non possono diventare zero o "
+                   "negativi.\n";
       exit(1);
     }
 
-    // Calcolo del valore di H(x, y)
-    double H = -D * log(x) + C * x + B * y - A * log(y);
-    std::cout << "H(" << x << ", " << y << ") = " << H << std::endl;
+    x = new_x;
+    y = new_y;
+
+    // Recalculate relative values
+    if (x_eq != 0) {
+      x_relative = x / x_eq;
+    } else {
+      x_relative = 0;  // Handle division by zero gracefully
+    }
+
+    if (y_eq != 0) {
+      y_relative = y / y_eq;
+    } else {
+      y_relative = 0;  // Handle division by zero gracefully
+    }
+
+    // Calcola H(x, y)
+    H = -D * log(x) + C * x + B * y - A * log(y);
+    t += dt;
 
     // Se overflow, esco e segnalo errore
-    if (std::isinf(x) || std::isinf(y)) {
+    if (std::isinf(new_x) || std::isinf(new_y)) {
       std::cerr << "Errore: overflow durante la simulazione.\n";
       exit(1);
     }
@@ -93,7 +113,8 @@ class Simulation {
     std::cout << "y(" << t << ") = " << y << ", y_rel = " << y_relative
               << std::endl;
     // Stampa a schermo l'integrale primitivo H(x, y)
-    std::cout << "H(" << x << ", " << y << ") = " << std::endl << std::endl;
+    std::cout << "H(" << x << ", " << y << ") = " << H << std::endl
+              << std::endl;
   };
 
   void save_to_file(const std::string& filename) {
@@ -105,7 +126,7 @@ class Simulation {
     }
     file << "x(" << t << ") = " << x << ", x_rel = " << x_relative << "\n";
     file << "y(" << t << ") = " << y << ", y_rel = " << y_relative << "\n";
-    file << "H(" << x << ", " << y << ") = \n";
+    file << "H(" << x << ", " << y << ") = " << H << "\n";
     file.close();
   };
 };
@@ -147,14 +168,24 @@ int main(int argc, char* argv[]) {
   int steps;
   std::cout << "Quanti passi vuoi simulare? ";
   std::cin >> steps;
+
   for (int i = 0; i < steps; ++i) {
     sim.evolve();
+    // Print the values and save to file
+    sim.print();
     sim.save_to_file("simulation_output.txt");
   }
 
-  // Stampa lo stato finale della simulazione
-  std::cout << "Stato della simulazione dopo l'evoluzione:\n";
   sim.print();
+
+  // Accessing private member variables via public getter methods
+  std::cout << "Verifica dei risultati:" << std::endl;
+  std::cout << "Punti di equilibrio: x_eq = " << D / C << ", y_eq = " << A / B
+            << std::endl;
+  std::cout << "Stabilità dei punti di equilibrio (x_rel, y_rel): ("
+            << sim.getXRelative() << ", " << sim.getYRelative() << ")"
+            << std::endl;
+  std::cout << "Valore del Hamiltoniano H(x, y): " << sim.getH() << std::endl;
 
   return 0;
 };

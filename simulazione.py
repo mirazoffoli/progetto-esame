@@ -19,7 +19,7 @@ class Simulazione:
         print(f"iterazione: {self.iterazioni} x: {self.x}, y: {self.y}")
 
 
-s = Simulazione(2000, 50, 0.1, 0.01, 0.01, 0.1)
+s = Simulazione(2000, 10, 0.1, 0.02, 0.05, 0.1)
 while 1:
     s.print()
     input()
