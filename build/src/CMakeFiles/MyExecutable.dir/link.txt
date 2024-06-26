@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/MyExecutable.dir/Algorithm.cpp.o -o ../MyExecutable 

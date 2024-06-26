@@ -1,16 +1,18 @@
 # progetto-esame
 
 ## Compilare con Cmake
-Creare la cartella `build`: 
+Dalla cartella principale del progetto (progetto-esame):
 ```bash
-mkdir build
+cmake -S . -B ../build
+``` 
+Verranno creati del file nella cartella build
+
+Spostati nella cartella build e compila il progetto:
+``` bash
 cd build
+make
 ``` 
 
-Compilare il progetto all'interno della cartella
-``` 
-cmake .. 
-cmake --build .
-``` 
+Nella cartella build verrà compilato l'eseguibile main, che puoi eseguire
 
 L'eseguibile prodotto si chiama `main` 
