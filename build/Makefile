@@ -129,6 +129,19 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named test_simulazione
+
+# Build rule for target.
+test_simulazione: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_simulazione
+.PHONY : test_simulazione
+
+# fast build rule for target.
+test_simulazione/fast:
+	$(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/test_simulazione.dir/build.make src/test/CMakeFiles/test_simulazione.dir/build
+.PHONY : test_simulazione/fast
+
 src/Algorithm.o: src/Algorithm.cpp.o
 .PHONY : src/Algorithm.o
 
@@ -153,6 +166,54 @@ src/Algorithm.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Algorithm.cpp.s
 .PHONY : src/Algorithm.cpp.s
 
+src/Simulation.o: src/Simulation.cpp.o
+.PHONY : src/Simulation.o
+
+# target to build an object file
+src/Simulation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Simulation.cpp.o
+.PHONY : src/Simulation.cpp.o
+
+src/Simulation.i: src/Simulation.cpp.i
+.PHONY : src/Simulation.i
+
+# target to preprocess a source file
+src/Simulation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Simulation.cpp.i
+.PHONY : src/Simulation.cpp.i
+
+src/Simulation.s: src/Simulation.cpp.s
+.PHONY : src/Simulation.s
+
+# target to generate assembly for a file
+src/Simulation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Simulation.cpp.s
+.PHONY : src/Simulation.cpp.s
+
+src/test/test_simulazione.o: src/test/test_simulazione.cpp.o
+.PHONY : src/test/test_simulazione.o
+
+# target to build an object file
+src/test/test_simulazione.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/test/test_simulazione.cpp.o
+.PHONY : src/test/test_simulazione.cpp.o
+
+src/test/test_simulazione.i: src/test/test_simulazione.cpp.i
+.PHONY : src/test/test_simulazione.i
+
+# target to preprocess a source file
+src/test/test_simulazione.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/test/test_simulazione.cpp.i
+.PHONY : src/test/test_simulazione.cpp.i
+
+src/test/test_simulazione.s: src/test/test_simulazione.cpp.s
+.PHONY : src/test/test_simulazione.s
+
+# target to generate assembly for a file
+src/test/test_simulazione.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/test/test_simulazione.cpp.s
+.PHONY : src/test/test_simulazione.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +223,16 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... test_simulazione"
 	@echo "... src/Algorithm.o"
 	@echo "... src/Algorithm.i"
 	@echo "... src/Algorithm.s"
+	@echo "... src/Simulation.o"
+	@echo "... src/Simulation.i"
+	@echo "... src/Simulation.s"
+	@echo "... src/test/test_simulazione.o"
+	@echo "... src/test/test_simulazione.i"
+	@echo "... src/test/test_simulazione.s"
 .PHONY : help
 
 

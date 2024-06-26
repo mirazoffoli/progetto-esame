@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/main.dir/src/Algorithm.cpp.o -o main 
+/usr/bin/c++ CMakeFiles/main.dir/src/Algorithm.cpp.o CMakeFiles/main.dir/src/Simulation.cpp.o CMakeFiles/main.dir/src/test/test_simulazione.cpp.o -o main 

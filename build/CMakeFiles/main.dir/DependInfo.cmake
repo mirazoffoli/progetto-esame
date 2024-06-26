@@ -9,6 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/luca/mira/progetto-esame/src/Algorithm.cpp" "CMakeFiles/main.dir/src/Algorithm.cpp.o" "gcc" "CMakeFiles/main.dir/src/Algorithm.cpp.o.d"
+  "/home/luca/mira/progetto-esame/src/Simulation.cpp" "CMakeFiles/main.dir/src/Simulation.cpp.o" "gcc" "CMakeFiles/main.dir/src/Simulation.cpp.o.d"
+  "/home/luca/mira/progetto-esame/src/test/test_simulazione.cpp" "CMakeFiles/main.dir/src/test/test_simulazione.cpp.o" "gcc" "CMakeFiles/main.dir/src/test/test_simulazione.cpp.o.d"
   )
 
 # Targets to which this target links.
