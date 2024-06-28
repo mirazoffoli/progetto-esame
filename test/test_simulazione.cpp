@@ -25,8 +25,16 @@ TEST_CASE("Testing Simulation constructor with invalid parameters") {
   CHECK_THROWS_AS(Simulation(-5, 0, 0.1, 0, 0.05, 0.1), std::invalid_argument);
 }
 
-// TEST_CASE("Testing Simulation constructor with edge valid parameters") {
-//   Simulation sim1(1, 1, 1, 1, 1, 1);
-//   CHECK(sim1.getXRelative() == doctest::Approx(1 / (1 / 1)));
-//   CHECK(sim1.getYRelative() == doctest::Approx(1 / (1 / 1)));
-// }
+TEST_CASE("Testing Simulation constructor with edge valid parameters") {
+  Simulation sim1(1, 1, 1, 1, 1, 1);
+  CHECK(sim1.getXRelative() == doctest::Approx(1 / (1 / 1)));
+  CHECK(sim1.getYRelative() == doctest::Approx(1 / (1 / 1)));
+}
+
+TEST_CASE("Testing Simulation evolve method") {
+  Simulation sim(2000, 45, 0.1, 0.02, 0.05, 0.1);
+  sim.evolve();  // Perform one evolution step
+  // Add checks to ensure the evolution process is correct
+  CHECK(sim.getXRelative() >= 0);  // Example check
+  CHECK(sim.getYRelative() >= 0);  // Example check
+}
