@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/main.dir/src/Algorithm.cpp.o -o main 
+/usr/bin/c++  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast CMakeFiles/main.dir/src/Algorithm.cpp.o -o main 

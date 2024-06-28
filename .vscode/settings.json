@@ -3,5 +3,8 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "cmake.sourceDirectory": "/Users/Nicola/Desktop/progetto-esame/src",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "files.associations": {
+        "stdexcept": "cpp"
+    }
 }
