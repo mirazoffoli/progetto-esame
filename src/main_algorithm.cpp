@@ -1,8 +1,9 @@
+#include <SFML/Graphics.hpp>
 #include <cmath>
 #include <fstream>
 #include <iostream>
 
-#include "Algorithm.hpp"
+#include "algorithm.hpp"
 
 int main(int argc, char* argv[]) {
   double x_iniziale, y_iniziale, A, B, C, D, dt;
@@ -62,3 +63,9 @@ int main(int argc, char* argv[]) {
 
   return 0;
 };
+
+// // funzione per visualizzare la simulazione usando SFML
+// int visualizzareSimulazione() {
+//   // crea la finestra
+//   sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+// }

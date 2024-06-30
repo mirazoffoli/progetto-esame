@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/luca/mira/progetto-esame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luca/mira/build
+CMAKE_BINARY_DIR = /home/luca/mira/progetto-esame/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -97,9 +97,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luca/mira/build/CMakeFiles /home/luca/mira/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luca/mira/progetto-esame/build/CMakeFiles /home/luca/mira/progetto-esame/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luca/mira/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luca/mira/progetto-esame/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -516,29 +516,56 @@ all.t/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/all.t.dir/build.make CMakeFiles/all.t.dir/build
 .PHONY : all.t/fast
 
-src/Algorithm.o: src/Algorithm.cpp.o
-.PHONY : src/Algorithm.o
+src/algorithm.o: src/algorithm.cpp.o
+.PHONY : src/algorithm.o
 
 # target to build an object file
-src/Algorithm.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Algorithm.cpp.o
-.PHONY : src/Algorithm.cpp.o
+src/algorithm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/algorithm.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/all.t.dir/build.make CMakeFiles/all.t.dir/src/algorithm.cpp.o
+.PHONY : src/algorithm.cpp.o
 
-src/Algorithm.i: src/Algorithm.cpp.i
-.PHONY : src/Algorithm.i
+src/algorithm.i: src/algorithm.cpp.i
+.PHONY : src/algorithm.i
 
 # target to preprocess a source file
-src/Algorithm.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Algorithm.cpp.i
-.PHONY : src/Algorithm.cpp.i
+src/algorithm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/algorithm.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/all.t.dir/build.make CMakeFiles/all.t.dir/src/algorithm.cpp.i
+.PHONY : src/algorithm.cpp.i
 
-src/Algorithm.s: src/Algorithm.cpp.s
-.PHONY : src/Algorithm.s
+src/algorithm.s: src/algorithm.cpp.s
+.PHONY : src/algorithm.s
 
 # target to generate assembly for a file
-src/Algorithm.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Algorithm.cpp.s
-.PHONY : src/Algorithm.cpp.s
+src/algorithm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/algorithm.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/all.t.dir/build.make CMakeFiles/all.t.dir/src/algorithm.cpp.s
+.PHONY : src/algorithm.cpp.s
+
+src/main_algorithm.o: src/main_algorithm.cpp.o
+.PHONY : src/main_algorithm.o
+
+# target to build an object file
+src/main_algorithm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main_algorithm.cpp.o
+.PHONY : src/main_algorithm.cpp.o
+
+src/main_algorithm.i: src/main_algorithm.cpp.i
+.PHONY : src/main_algorithm.i
+
+# target to preprocess a source file
+src/main_algorithm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main_algorithm.cpp.i
+.PHONY : src/main_algorithm.cpp.i
+
+src/main_algorithm.s: src/main_algorithm.cpp.s
+.PHONY : src/main_algorithm.s
+
+# target to generate assembly for a file
+src/main_algorithm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main_algorithm.cpp.s
+.PHONY : src/main_algorithm.cpp.s
 
 test/test_simulazione.o: test/test_simulazione.cpp.o
 .PHONY : test/test_simulazione.o
@@ -603,9 +630,12 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... all.t"
 	@echo "... main"
-	@echo "... src/Algorithm.o"
-	@echo "... src/Algorithm.i"
-	@echo "... src/Algorithm.s"
+	@echo "... src/algorithm.o"
+	@echo "... src/algorithm.i"
+	@echo "... src/algorithm.s"
+	@echo "... src/main_algorithm.o"
+	@echo "... src/main_algorithm.i"
+	@echo "... src/main_algorithm.s"
 	@echo "... test/test_simulazione.o"
 	@echo "... test/test_simulazione.i"
 	@echo "... test/test_simulazione.s"

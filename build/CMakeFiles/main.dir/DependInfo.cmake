@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/luca/mira/progetto-esame/src/Algorithm.cpp" "CMakeFiles/main.dir/src/Algorithm.cpp.o" "gcc" "CMakeFiles/main.dir/src/Algorithm.cpp.o.d"
+  "/home/luca/mira/progetto-esame/src/algorithm.cpp" "CMakeFiles/main.dir/src/algorithm.cpp.o" "gcc" "CMakeFiles/main.dir/src/algorithm.cpp.o.d"
+  "/home/luca/mira/progetto-esame/src/main_algorithm.cpp" "CMakeFiles/main.dir/src/main_algorithm.cpp.o" "gcc" "CMakeFiles/main.dir/src/main_algorithm.cpp.o.d"
   )
 
 # Targets to which this target links.

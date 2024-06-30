@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <stdexcept>  // Include this to use std::invalid_argument
 
-#include "../src/Algorithm.hpp"
+#include "../src/algorithm.hpp"
 #include "doctest.h"
 
 TEST_CASE("Testing Simulation constructor with valid parameters") {

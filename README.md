@@ -19,10 +19,19 @@ L'eseguibile prodotto si chiama `main`
 
 
 Per compilare codice simulazione:
-g++ -std=c++11 src/Algorithm.cpp src/main_algorithm.cpp -o main_algorithm
+g++ -std=c++11 src/algorithm.cpp src/main_algorithm.cpp -o main_algorithm
 ./main_algorithm
 
 Per compilare i test:
-g++ -std=c++11 test/test_simulazione.cpp src/Algorithm.cpp -o test_simulazione
+g++ -std=c++11 test/test_simulazione.cpp src/algorithm.cpp -o test_simulazione
 Poi:
 ./test_simulazione
+
+
+compilare con cmake:
+in build : rm -rf build/*
+           cmake ..
+           make
+           ./main
+           /all.t oppure ctest
+           

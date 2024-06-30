@@ -1,4 +1,4 @@
-#include "Algorithm.hpp"
+#include "algorithm.hpp"
 
 #include <cmath>
 #include <fstream>
@@ -106,14 +106,25 @@ void Simulation::print() {
 };
 
 void Simulation::save_to_file(const std::string& filename) {
-  std::ofstream file(filename,
-                     std::ios::app);  // Apri il file in modalità append
+  std::string filepath = "../src/" + filename;
+
+  std::ofstream file(filepath);
   if (!file.is_open()) {
-    std::cerr << "Errore nell'apertura del file\n";
+    std::cerr << "Errore nell'apertura del file: " << filepath << std::endl;
     return;
   }
+  std::cout << "Salvataggio dati in: " << filepath
+            << std::endl;  // Debug output
+
+  file << "Output simulazione:\n";
   file << "x(" << t << ") = " << x << ", x_rel = " << x_relative << "\n";
   file << "y(" << t << ") = " << y << ", y_rel = " << y_relative << "\n";
   file << "H(" << x << ", " << y << ") = " << H << "\n";
+
   file.close();
+
+  if (file.fail()) {
+    std::cerr << "Errore durante il salvataggio del file: " << filename
+              << std::endl;
+  }
 };

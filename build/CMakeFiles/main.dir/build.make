@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/luca/mira/progetto-esame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luca/mira/build
+CMAKE_BINARY_DIR = /home/luca/mira/progetto-esame/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -69,31 +69,50 @@ include CMakeFiles/main.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/main.dir/flags.make
 
-CMakeFiles/main.dir/src/Algorithm.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/src/Algorithm.cpp.o: /home/luca/mira/progetto-esame/src/Algorithm.cpp
-CMakeFiles/main.dir/src/Algorithm.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/luca/mira/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/src/Algorithm.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/Algorithm.cpp.o -MF CMakeFiles/main.dir/src/Algorithm.cpp.o.d -o CMakeFiles/main.dir/src/Algorithm.cpp.o -c /home/luca/mira/progetto-esame/src/Algorithm.cpp
+CMakeFiles/main.dir/src/algorithm.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/algorithm.cpp.o: ../src/algorithm.cpp
+CMakeFiles/main.dir/src/algorithm.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/luca/mira/progetto-esame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/src/algorithm.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/algorithm.cpp.o -MF CMakeFiles/main.dir/src/algorithm.cpp.o.d -o CMakeFiles/main.dir/src/algorithm.cpp.o -c /home/luca/mira/progetto-esame/src/algorithm.cpp
 
-CMakeFiles/main.dir/src/Algorithm.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/Algorithm.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/mira/progetto-esame/src/Algorithm.cpp > CMakeFiles/main.dir/src/Algorithm.cpp.i
+CMakeFiles/main.dir/src/algorithm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/algorithm.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/mira/progetto-esame/src/algorithm.cpp > CMakeFiles/main.dir/src/algorithm.cpp.i
 
-CMakeFiles/main.dir/src/Algorithm.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Algorithm.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/mira/progetto-esame/src/Algorithm.cpp -o CMakeFiles/main.dir/src/Algorithm.cpp.s
+CMakeFiles/main.dir/src/algorithm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/algorithm.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/mira/progetto-esame/src/algorithm.cpp -o CMakeFiles/main.dir/src/algorithm.cpp.s
+
+CMakeFiles/main.dir/src/main_algorithm.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/main_algorithm.cpp.o: ../src/main_algorithm.cpp
+CMakeFiles/main.dir/src/main_algorithm.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/luca/mira/progetto-esame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/main_algorithm.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/main_algorithm.cpp.o -MF CMakeFiles/main.dir/src/main_algorithm.cpp.o.d -o CMakeFiles/main.dir/src/main_algorithm.cpp.o -c /home/luca/mira/progetto-esame/src/main_algorithm.cpp
+
+CMakeFiles/main.dir/src/main_algorithm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/src/main_algorithm.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/luca/mira/progetto-esame/src/main_algorithm.cpp > CMakeFiles/main.dir/src/main_algorithm.cpp.i
+
+CMakeFiles/main.dir/src/main_algorithm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/main_algorithm.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/luca/mira/progetto-esame/src/main_algorithm.cpp -o CMakeFiles/main.dir/src/main_algorithm.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
-"CMakeFiles/main.dir/src/Algorithm.cpp.o"
+"CMakeFiles/main.dir/src/algorithm.cpp.o" \
+"CMakeFiles/main.dir/src/main_algorithm.cpp.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
-main: CMakeFiles/main.dir/src/Algorithm.cpp.o
+main: CMakeFiles/main.dir/src/algorithm.cpp.o
+main: CMakeFiles/main.dir/src/main_algorithm.cpp.o
 main: CMakeFiles/main.dir/build.make
+main: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1
+main: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1
+main: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/luca/mira/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/luca/mira/progetto-esame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -105,6 +124,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/luca/mira/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/luca/mira/progetto-esame /home/luca/mira/progetto-esame /home/luca/mira/build /home/luca/mira/build /home/luca/mira/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/luca/mira/progetto-esame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/luca/mira/progetto-esame /home/luca/mira/progetto-esame /home/luca/mira/progetto-esame/build /home/luca/mira/progetto-esame/build /home/luca/mira/progetto-esame/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 
