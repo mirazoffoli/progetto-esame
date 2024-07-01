@@ -2,7 +2,6 @@
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "cmake.sourceDirectory": "/Users/Nicola/Desktop/progetto-esame/src",
     "cmake.ignoreCMakeListsMissing": true,
     "files.associations": {
         "stdexcept": "cpp",
