@@ -3,7 +3,7 @@
 ## Compilare con Cmake
 Dalla cartella principale del progetto (progetto-esame):
 ```bash
-cmake -S . -B ../build
+cmake -S . -B build
 ``` 
 Verranno creati del file nella cartella build
 

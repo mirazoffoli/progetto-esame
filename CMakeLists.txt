@@ -34,7 +34,7 @@ if (BUILD_TESTING)
 
 	file(GLOB TESTS "test/*.cpp")
 
-	add_executable(all.t ${TESTS} src/algorithm.cpp)
+	add_executable(all.t ${TESTS} src/Simulation.cpp)
 	  target_link_libraries(all.t sfml-graphics sfml-window sfml-system)
 
 	# aggiungi l'eseguibile all.t alla lista dei test
